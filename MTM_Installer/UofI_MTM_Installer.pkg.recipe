@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>
+This recipe calls a download recipe that downloads a Munki tools pkg as well as the UofI MTM onboarding pkg
+to the recipe cache/downloads folder. Then this recipe breaks it down into the individual component pkgs,
+and then rebuilds them such that we end up with a single distribution pkg that contains Munki tools and MTM onboarding pkg.
+I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG core recipes for this recipe.
+</string>
+    <key>Identifier</key>
+    <string>com.github.Gibbun.pkg.UofI_MTM_Installer</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>UofI_MTM_Installer</string>
+        <key>USERHOMEDIR</key>
+        <string>/Users/Shared/Jenkins</string>
+        <key>DESTINATION</key>
+        <string>/Users/Shared/Jenkins/Desktop/munkirepo/Onboarding/Raw</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.Gibbun.download.UofI_MTM_Installer</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/Build</string>
+		<key>pkgdirs</key>
+                <dict/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^munkitools-3.*?pkg$</string>
+                <key>github_repo</key>
+                <string>munki/munki</string>
+                <key>include_prereleases</key>
+                <string></string>
+            </dict>
+        </dict>
+	<dict>
+		<key>Processor</key>
+		<string>com.github.Gibbun.recipes.MTM_Installer/PkgDistributionCreator</string>
+		<key>Arguments</key>
+		<dict>
+			<key>source_file1</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_core.pkg</string>
+			<key>source_file2</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_admin.pkg</string>
+			<key>source_file3</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_app.pkg</string>
+			<key>source_file4</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_app_usage.pkg</string>
+			<key>source_file5</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_launchd.pkg</string>
+			<key>source_file6</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkionboard.pkg</string>
+			<key>distribution_file</key>
+			<string>%RECIPE_CACHE_DIR%/distribution.xml</string>
+			<key>package_dir</key>
+			<string>%RECIPE_CACHE_DIR%/repack/</string>
+			<key>version</key>
+			<string>%version%</string>
+			<key>output_file</key>
+			<string>%RECIPE_CACHE_DIR%/Build/%NAME%-%version%.pkg</string>
+		</dict>
+		<key>SharedProcessorRepoURL</key>
+		<string>https://github.com/Gibbun/recipes</string>
+	</dict>
+        <dict>
+            <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>destination_path</key>
+                <string>%DESTINATION%/%NAME%-%version%.pkg</string>
+                <key>source_path</key>
+                <string>%RECIPE_CACHE_DIR%/Build/%NAME%-%version%.pkg</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>

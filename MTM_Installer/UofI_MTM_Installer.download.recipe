@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>
+Modified version of code and concepts from munkitools3.munki.recipe in the AutoPKG core recipes.
+It is more or less the MunkiTools3 recipe but I added a step to also download the UofI MTM onboarding pkg.
+
+---Below is the original recipe notes---
+Note: munkitools does not include a code signature. If your
+organization requires code signature, it is recommend to internally sign
+the application.
+
+Downloads and imports version 3 of the Munki tools via
+the official releases listing on GitHub. You can set INCLUDE_PRERELEASES
+to any value to have this recipe pull prerelease versions.
+
+Note that Munki 3 includes an additional component pkg, munkitools_app_usage.
+This recipe imports this to the Munki with the appropriate 'requires' key,
+however as it is considered an optional component, this recipe does not
+add it as an update_for any Munki component. Admins should add
+munkitools_app_usage to a manifest manually if its installation on clients
+is desired.
+
+This recipe cannot be overridden to pull a download from an
+alternate location such as munkibuilds.org - it will only download the
+official releases. For this, use the munkitools2-autobuild.munki
+recipe with a manually-provided DOWNLOAD_URL variable.
+
+The GitHubReleasesInfoProvider processor used by this recipe also
+respects an input variable: 'sort_by_highest_tag_names', which
+if set, will ignore the post dates of the releases and instead sort
+descending by tag names according to LooseVersion semantics.
+
+MUNKI_ICON should be overridden with your icon name.
+</string>
+    <key>Identifier</key>
+    <string>com.github.Gibbun.download.UofI_MTM_Installer</string>
+    <key>Input</key>
+    <dict>
+        <key>DOWNLOAD_URL</key>
+        <string>https://munki.illinois.edu/myawesomepkg.pkg</string>
+        <key>INCLUDE_PRERELEASES</key>
+        <string></string>
+        <key>NAME</key>
+        <string>UofI_MTM_Installer</string>
+        <key>MUNKI_CATALOG</key>
+        <string>development</string>
+        <key>MUNKI_CATEGORY</key>
+        <string>munkitools</string>
+        <key>MUNKI_DEVELOPER</key>
+        <string>The Munki Project</string>
+        <key>MUNKI_ICON</key>
+        <string>UofI-MunkiIcon.icns</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>munkitools</string>
+        <!--  -->
+        <key>MUNKITOOLS_CORE_NAME</key>
+        <string>munkitools_core</string>
+        <key>MUNKITOOLS_CORE_DISPLAYNAME</key>
+        <string>Managed Software Center core tools</string>
+        <key>MUNKITOOLS_CORE_DESCRIPTION</key>
+        <string>Core command-line tools used by Managed Software Center.</string>
+        <!--  -->
+        <key>MUNKITOOLS_ADMIN_NAME</key>
+        <string>munkitools_admin</string>
+        <key>MUNKITOOLS_ADMIN_DISPLAYNAME</key>
+        <string>Managed Software Center admin tools</string>
+        <key>MUNKITOOLS_ADMIN_DESCRIPTION</key>
+        <string>Command-line Managed Software Center admin tools.</string>
+        <!--  -->
+        <key>MUNKITOOLS_APP_NAME</key>
+        <string>munkitools</string>
+        <key>MUNKITOOLS_APP_DISPLAYNAME</key>
+        <string>Managed Software Center</string>
+        <key>MUNKITOOLS_APP_DESCRIPTION</key>
+        <string>Managed Software Center application.</string>
+        <!--  -->
+        <key>MUNKITOOLS_APP_USAGE_NAME</key>
+        <string>munkitools_app_usage</string>
+        <key>MUNKITOOLS_APP_USAGE_DISPLAYNAME</key>
+        <string>Managed Software Center app usage</string>
+        <key>MUNKITOOLS_APP_USAGE_DESCRIPTION</key>
+        <string>Application usage statistics for Managed Software Center.</string>
+        <!--  -->
+        <key>MUNKITOOLS_LAUNCHD_NAME</key>
+        <string>munkitools_launchd</string>
+        <key>MUNKITOOLS_LAUNCHD_DISPLAYNAME</key>
+        <string>Managed Software Center launchd files</string>
+        <key>MUNKITOOLS_LAUNCHD_DESCRIPTION</key>
+        <string>launchd configuration files for use by Managed Software Center.</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^munkitools-3.*?pkg$</string>
+                <key>github_repo</key>
+                <string>munki/munki</string>
+                <key>include_prereleases</key>
+                <string>%INCLUDE_PRERELEASES%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/repack</string>
+                <key>pkgdirs</key>
+                <dict/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_core-*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_flatpkg_dir</key>
+                <string>%found_filename%</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/repack/munkitools_core.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_admin-*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_flatpkg_dir</key>
+                <string>%found_filename%</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/repack/munkitools_admin.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_app-*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_flatpkg_dir</key>
+                <string>%found_filename%</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/repack/munkitools_app.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_app_usage-*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_flatpkg_dir</key>
+                <string>%found_filename%</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/repack/munkitools_app_usage.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_launchd-*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_flatpkg_dir</key>
+                <string>%found_filename%</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/repack/munkitools_launchd.pkg</string>
+            </dict>
+        </dict>
+        <dict>
+	    <key>Comment</key>
+	    <string>Download MTM onboarding package to cache repack folder.</string>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%DOWNLOAD_URL%</string>
+                <key>download_dir</key>
+                <string>%RECIPE_CACHE_DIR%/downloads</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgUnpacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>flat_pkg_path</key>
+                <string>%pathname%</string>
+                <key>destination_path</key>
+                <string>%RECIPE_CACHE_DIR%/unpack</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkionboard-*</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>FlatPkgPacker</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_flatpkg_dir</key>
+                <string>%found_filename%</string>
+                <key>destination_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/repack/munkionboard.pkg</string>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
