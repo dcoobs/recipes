@@ -52,7 +52,7 @@ I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG c
         </dict>
 	<dict>
 		<key>Processor</key>
-		<string>com.github.Gibbun.recipes.MTM_Installer/PkgDistributionCreator</string>
+		<string>com.github.DCoobs.recipes.MTM_Installer/PkgDistributionCreator</string>
 		<key>Arguments</key>
 		<dict>
 			<key>source_file1</key>
@@ -77,7 +77,7 @@ I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG c
 			<string>%RECIPE_CACHE_DIR%/Build/%NAME%-%version%.pkg</string>
 		</dict>
 		<key>SharedProcessorRepoURL</key>
-		<string>https://github.com/Gibbun/recipes</string>
+		<string>https://github.com/DCoobs/recipes</string>
 	</dict>
         <dict>
             <key>Processor</key>
