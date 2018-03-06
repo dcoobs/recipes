@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest Kaltura CaptureSpace installer</string>
     <key>Identifier</key>
-    <string>com.github.DCoobs.download.CaptureSpace</string>
+    <string>com.github.dcoobs.download.CaptureSpace</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
