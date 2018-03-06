@@ -42,7 +42,7 @@
                 <key>additional_pkginfo</key>
                 <dict>
                     <key>minimum_os_version</key>
-                    <string>%minimum_os_version%</string>
+                    <string>10.9.0</string>
                 </dict>
             </dict>
         </dict>
