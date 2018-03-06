@@ -10,7 +10,7 @@ and then rebuilds them such that we end up with a single distribution pkg that c
 I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG core recipes for this recipe.
 </string>
     <key>Identifier</key>
-    <string>com.github.DCoobs.pkg.UofI_MTM_Installer</string>
+    <string>com.github.dcoobs.pkg.UofI_MTM_Installer</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -23,7 +23,7 @@ I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG c
     <key>MinimumVersion</key>
     <string>0.5.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.DCoobs.download.UofI_MTM_Installer</string>
+    <string>com.github.dcoobs.download.UofI_MTM_Installer</string>
     <key>Process</key>
     <array>
         <dict>
@@ -52,7 +52,7 @@ I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG c
         </dict>
 	<dict>
 		<key>Processor</key>
-		<string>com.github.DCoobs.recipes.MTM_Installer/PkgDistributionCreator</string>
+		<string>com.github.dcoobs.recipes.MTM_Installer/PkgDistributionCreator</string>
 		<key>Arguments</key>
 		<dict>
 			<key>source_file1</key>
@@ -77,7 +77,7 @@ I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG c
 			<string>%RECIPE_CACHE_DIR%/Build/%NAME%-%version%.pkg</string>
 		</dict>
 		<key>SharedProcessorRepoURL</key>
-		<string>https://github.com/DCoobs/recipes</string>
+		<string>https://github.com/dcoobs/recipes</string>
 	</dict>
         <dict>
             <key>Processor</key>
