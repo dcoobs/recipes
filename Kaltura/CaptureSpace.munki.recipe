@@ -18,8 +18,12 @@
             <array>
                 <string>testing</string>
             </array>
+            <key>category</key>
+            <string>Video</string>
             <key>description</key>
             <string>Kaltura CaptureSpace combines painless recording, automated publishing, and interactive viewing to enable easy video capture in class, at the office, at home, or on-the-go.</string>
+            <key>developer</key>
+            <string>Kaltura</string>
             <key>display_name</key>
             <string>CaptureSpace</string>
             <key>name</key>
