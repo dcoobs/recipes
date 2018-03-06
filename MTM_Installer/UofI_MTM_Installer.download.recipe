@@ -36,7 +36,7 @@ descending by tag names according to LooseVersion semantics.
 MUNKI_ICON should be overridden with your icon name.
 </string>
     <key>Identifier</key>
-    <string>com.github.DCoobs.download.UofI_MTM_Installer</string>
+    <string>com.github.dcoobs.download.UofI_MTM_Installer</string>
     <key>Input</key>
     <dict>
         <key>DOWNLOAD_URL</key>
