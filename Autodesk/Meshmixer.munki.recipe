@@ -45,7 +45,7 @@
     <key>MinimumVersion</key>
     <string>0.6.0</string>
     <key>ParentRecipe</key>
-    <string>https://github.com/autopkg/moofit-recipes</string>
+    <string>com.github.amsysuk-recipes.download.Meshmixer</string>
     <key>Process</key>
     <array>
         <dict>
