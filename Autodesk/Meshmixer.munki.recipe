@@ -45,7 +45,7 @@
     <key>MinimumVersion</key>
     <string>0.6.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.hansen-m.download.Meshmixer</string>
+    <string>https://github.com/autopkg/moofit-recipes</string>
     <key>Process</key>
     <array>
         <dict>
