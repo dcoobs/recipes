@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest Avogadro installer</string>
+    <string>Downloads the latest Avogadro2 installer</string>
     <key>Identifier</key>
     <string>com.github.dcoobs.download.Avogadro2</string>
     <key>Input</key>
