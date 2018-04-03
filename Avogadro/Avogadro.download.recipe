@@ -11,23 +11,45 @@
         <key>NAME</key>
         <string>Avogadro</string>
         <key>URL</key>
-        <string>https://sourceforge.net/projects/avogadro/files/latest/download</string>
+        <string>https://www.openchemistry.org/downloads/</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.0</string>
     <key>Process</key>
     <array>
         <dict>
-            <key>Comment</key>
-            <string>Download the latest Avogadro disk image</string>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>https://www.openchemistry.org/downloads/</string>
+                <key>re_pattern</key>
+                <string>(rotation.*?\.dmg)</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLTextSearcher</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>https://www.openchemistry.org/%match%</string>
+                <key>re_pattern</key>
+                <string>href=\"(https.*?Avogadro.*?\.dmg)\"</string>
+            </dict>
+        </dict>
+        <dict>
             <key>Processor</key>
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
-                <key>url</key>
-                <string>%URL%</string>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
+                <key>url</key>
+                <string>%match%</string>
+                <key>CHECK_FILESIZE_ONLY</key>
+                <true/>
             </dict>
         </dict>
         <dict>
