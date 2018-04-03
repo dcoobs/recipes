@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest Avogadro installer</string>
+    <key>Identifier</key>
+    <string>com.github.dcoobs.download.Avogadro</string>
+    <key>Input</key>
+    <dict>
+        <key>NAME</key>
+        <string>Avogadro</string>
+        <key>URL</key>
+        <string>https://sourceforge.net/projects/avogadro/files/latest/download</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.6.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Download the latest Avogadro disk image</string>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+            <key>Arguments</key>
+            <dict>
+                <key>url</key>
+                <string>%URL%</string>
+                <key>filename</key>
+                <string>%NAME%.dmg</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+    </array>
+</dict>
+</plist>
