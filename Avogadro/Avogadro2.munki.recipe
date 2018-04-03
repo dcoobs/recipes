@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest Avogadro installer. Imports it into Munki.</string>
+    <string>Downloads the latest Avogadro2 installer. Imports it into Munki.</string>
     <key>Identifier</key>
-    <string>com.github.dcoobs.munki.Avogadro</string>
+    <string>com.github.dcoobs.munki.Avogadro2</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps/Avogadro</string>
+        <string>apps/Avogadro2</string>
         <key>NAME</key>
-        <string>Avogadro</string>
+        <string>Avogadro2</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -21,11 +21,11 @@
             <key>category</key>
             <string>STEM</string>
             <key>description</key>
-            <string>Avogadro is an advanced molecule editor and visualizer designed for cross-platform use in computational chemistry, molecular modeling, bioinformatics, materials science, and related areas. It offers flexible high quality rendering and a powerful plugin architecture.</string>
+            <string>Avogadro2 is a chemical editor and visualization application, it is also a set of reusable software libraries written in C++ using principles of modularity for maximum reuse. It is a rewrite of the original's core data structures, algorithms and visualization capabilities.</string>
             <key>developer</key>
-            <string>Avogadro Development Team</string>
+            <string>Open Chemistry</string>
             <key>display_name</key>
-            <string>Avogadro</string>
+            <string>Avogadro2</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -35,7 +35,7 @@
     <key>MinimumVersion</key>
     <string>0.6.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.dcoobs.download.Avogadro</string>
+    <string>com.github.dcoobs.download.Avogadro2</string>
     <key>Process</key>
     <array>
         <dict>
