@@ -35,7 +35,7 @@
     <key>MinimumVersion</key>
     <string>0.6.0</string>
     <key>ParentRecipe</key>
-    <string>om.github.grahampugh.pkg.filemakerproadvancedupdater</string>
+    <string>com.github.grahampugh.pkg.filemakerproadvancedupdater</string>
     <key>Process</key>
     <array>
         <dict>
