@@ -45,7 +45,7 @@
     <key>MinimumVersion</key>
     <string>0.6.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.amsysuk-recipes.download.Meshmixer</string>
+    <string>com.github.hansen-m.download.Meshmixer</string>
     <key>Process</key>
     <array>
         <dict>
