@@ -43,7 +43,7 @@ I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG c
             <key>Arguments</key>
             <dict>
                 <key>asset_regex</key>
-                <string>^munkitools-3.*?pkg$</string>
+                <string>^munkitools-4.*?pkg$</string>
                 <key>github_repo</key>
                 <string>munki/munki</string>
                 <key>include_prereleases</key>
@@ -66,6 +66,8 @@ I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG c
 			<key>source_file5</key>
 			<string>%RECIPE_CACHE_DIR%/repack/munkitools_launchd.pkg</string>
 			<key>source_file6</key>
+			<string>%RECIPE_CACHE_DIR%/repack/munkitools_python.pkg</string>
+			<key>source_file7</key>
 			<string>%RECIPE_CACHE_DIR%/repack/MTM.onboard.pkg</string>
 			<key>distribution_file</key>
 			<string>%RECIPE_CACHE_DIR%/distribution.xml</string>
