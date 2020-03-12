@@ -56,6 +56,10 @@ class PkgDistributionCreator(Processor):
             "required": True,
             "description": ("Path to a source file (MyCoolPkg6.pkg) "),
         },
+         "source_file7": {
+            "required": True,
+            "description": ("Path to a source file (MyCoolPkg6.pkg) "),
+        },
         "distribution_file": {
             "required": True,
             "description": ("Destination path of distribution file. "),
@@ -95,6 +99,7 @@ class PkgDistributionCreator(Processor):
                       "--package", self.env['source_file4'],
                       "--package", self.env['source_file5'],
                       "--package", self.env['source_file6'],
+                      "--package", self.env['source_file7'],
                       self.env['distribution_file']]
             p = subprocess.Popen(pbcmd,
                                  stdout=subprocess.PIPE,
@@ -166,7 +171,14 @@ class PkgDistributionCreator(Processor):
             except OSError as e:
                 raise ProcessorError(
                     "Can't find %s" % (self.env['source_file6'], e.strerror))
-
+        if os.path.exists(self.env['source_file7']):
+            try:
+                self.output("Found %s" % self.env['source_file7'])
+                self.pkgConvert()
+            except OSError as e:
+                raise ProcessorError(
+                    "Can't find %s" % (self.env['source_file7'], e.strerror))
+                
 if __name__ == '__main__':
     processor = PkgDistributionCreator()
     processor.execute_shell()
