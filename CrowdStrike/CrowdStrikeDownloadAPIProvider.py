@@ -139,8 +139,8 @@ class CrowdStrikeDownloadAPIProvider(Processor):
         self.env["platform"] = sensor_hash_version
 
         ### Download the latest sensor ###
-        self.output("Downloading", sensor_hash_name)
-        self.output("Version:", sensor_hash_version)
+        self.output("Downloading %s" % sensor_hash_name)
+        self.output("Version: %s" % sensor_hash_version)
         download_headers = {
             'accept': 'application/json',
             'authorization': "bearer {}".format(auth_token),
