@@ -23,6 +23,17 @@
     <array>
         <dict>
             <key>Processor</key>
+            <string>PkgRootCreator</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/download</string>
+                <key>pkgdirs</key>
+                <dict/>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>com.github.dcoobs.recipes.CrowdStrike/CrowdStrikeDownloadAPIProvider</string>
             <key>Arguments</key>
             <dict>
