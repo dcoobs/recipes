@@ -45,6 +45,12 @@ class CrowdStrikeDownloadAPIProvider(Processor):
                 "CrowdStrike API Secret"
             ),
         },
+        "output_file": {
+            "required": True,
+            "description": (
+                "Name of output file"
+            ),
+        },
         "platform": {
             "required": False,
             "default": 'mac',
@@ -150,9 +156,9 @@ class CrowdStrikeDownloadAPIProvider(Processor):
         sensor_download_url = sensor_download_api_url.format(cloudapiurl,sensor_hash_sha256)
         req = request.Request(sensor_download_url, headers=download_headers)
         response = self.urlopen_func(req)
-        with open(sensor_hash_name, 'wb') as file:
+        with open(self.env["output_file"], 'wb') as file:
             file.write(response.read())
-        self.env["pathname"] = sensor_hash_name
+        self.env["pathname"] = self.env["output_file"]
 
 if __name__ == "__main__":
     PROCESSOR = GitHubReleasesInfoProvider()
