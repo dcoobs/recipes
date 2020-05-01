@@ -43,6 +43,7 @@ class CrowdStrikeDownloadAPIProvider(Processor):
             "required": True,
             "description": (
                 "CrowdStrike API Secret"
+            ),
         },
         "platform": {
             "required": False,
