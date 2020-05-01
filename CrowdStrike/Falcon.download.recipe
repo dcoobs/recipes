@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of the CrowdStrike Falcon sensor</string>
+    <key>Identifier</key>
+    <string>com.github.dcoobs.download.CSFalcon</string>
+    <key>Input</key>
+    <dict>
+        <key>CLIENT_ID</key>
+        <string>REPLACEME</string>
+        <key>CLIENT_SECRET</key>
+        <string>REPLACEME</string>
+        <key>PLATFORM</key>
+        <string>mac</string>
+        <key>CLOUD</key>
+        <string>US</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+	          <key>Processor</key>
+		        <string>com.github.dcoobs.recipes.CrowdStrike/CrowdStrikeDownloadAPIProvider</string>
+	        	<key>Arguments</key>
+	        	<dict>
+                <key>client_ID</key>
+                <string>%CLIENT_ID%</string>
+                <key>client_secret</key>
+                <string>%CLIENT_SECRET%</string>
+                <key>platform</key>
+                <string>%PLATFORM%</string>
+                <key>cloud</key>
+                <string>%CLOUD%</string>
+	         	</dict>
+		        <key>SharedProcessorRepoURL</key>
+		        <string>https://github.com/dcoobs/recipes</string>
+        </dict>
+    </array>
+</dict>
+</plist>
