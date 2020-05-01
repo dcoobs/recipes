@@ -152,7 +152,7 @@ class CrowdStrikeDownloadAPIProvider(Processor):
         response = self.urlopen_func(req)
         with open(sensor_hash_name, 'wb') as file:
             file.write(response.read())
-        self.env["pathname"] = file
+        self.env["pathname"] = sensor_hash_name
 
 if __name__ == "__main__":
     PROCESSOR = GitHubReleasesInfoProvider()
