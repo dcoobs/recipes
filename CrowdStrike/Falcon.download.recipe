@@ -30,6 +30,8 @@
                 <string>%CLIENT_ID%</string>
                 <key>client_secret</key>
                 <string>%CLIENT_SECRET%</string>
+                <key>output_file</key>
+                <string>%RECIPE_CACHE_DIR%/download/FalconSensorMacOS-%version%.pkg</string>
                 <key>platform</key>
                 <string>%PLATFORM%</string>
                 <key>cloud</key>
