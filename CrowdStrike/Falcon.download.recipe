@@ -26,7 +26,7 @@
             <string>com.github.dcoobs.recipes.CrowdStrike/CrowdStrikeDownloadAPIProvider</string>
             <key>Arguments</key>
             <dict>
-                <key>client_ID</key>
+                <key>client_id</key>
                 <string>%CLIENT_ID%</string>
                 <key>client_secret</key>
                 <string>%CLIENT_SECRET%</string>
