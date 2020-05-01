@@ -86,13 +86,6 @@ class CrowdStrikeDownloadAPIProvider(Processor):
         }
         return switcher.get(cloud, 'api.crowdstrike.com')
 
-    self.cloudurl(self.env["cloud"])
-
-    ### API URLs ###
-    auth_token_api_url = 'https://{}/oauth2/token'.format(cloudapiurl)
-    sensor_hash_api_url = "https://{}/sensors/combined/installers/v1?offset=0&limit=1&filter=platform%3A%22{}%22".format(cloudapiurl,self.env["platform"])
-    sensor_download_api_url = "https://{}/sensors/entities/download-installer/v1?id={}"
-
     def urlopen_func(self, req):
         try:
             # Disable default SSL validation for urllib
@@ -108,6 +101,13 @@ class CrowdStrikeDownloadAPIProvider(Processor):
             sys.exit(1)
 
     def main(self):
+        cloudapiurl = self.cloudurl(self.env["cloud"])
+
+        ### API URLs ###
+        auth_token_api_url = 'https://{}/oauth2/token'.format(cloudapiurl)
+        sensor_hash_api_url = "https://{}/sensors/combined/installers/v1?offset=0&limit=1&filter=platform%3A%22{}%22".format(cloudapiurl,self.env["platform"])
+        sensor_download_api_url = "https://{}/sensors/entities/download-installer/v1?id={}"
+
         ### Obtain API auth token ###
         token_headers = {
             'accept': 'application/json',
