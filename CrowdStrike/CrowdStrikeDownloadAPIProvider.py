@@ -79,9 +79,9 @@ class CrowdStrikeDownloadAPIProvider(Processor):
 
     def cloudurl(self, cloud):
         switcher ={
-             'US':'api.crowdstrike.com'
-             'US-2':'api.us-2.crowdstrike.com'
-             'USFed':'api.laggar.gcw.crowdstrike.com'
+             'US':'api.crowdstrike.com',
+             'US-2':'api.us-2.crowdstrike.com',
+             'USFed':'api.laggar.gcw.crowdstrike.com',
              'EU':'api.eu-1.crowdstrike.com'
         }
         return switcher.get(cloud, 'api.crowdstrike.com')
