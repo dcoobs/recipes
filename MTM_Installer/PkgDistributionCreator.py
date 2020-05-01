@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# *** Drew Coobs <coobs1@illinois.edu> ***
 # Modified version of Chris Gerke's PkgDistributionCreator script
 # https://github.com/autopkg/cgerke-recipes/blob/master/SharedProcessors/PkgDistributionCreator.py
 # This will take six specified pkgs (in this case, designed for individual Munki tools installers and MTM onboarding pkg)
