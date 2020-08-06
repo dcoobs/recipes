@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest Avogadro2 installer. Imports it into Munki.</string>
     <key>Identifier</key>
-    <string>com.github.dcoobs.munki.Avogadro2</string>
+    <string>com.github.dcoobs-recipes.munki.Avogadro2</string>
     <key>Input</key>
     <dict>
         <key>MUNKI_REPO_SUBDIR</key>
