@@ -152,7 +152,7 @@ MUNKI_ICON should be overridden with your icon name.
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_core*</string>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_core*.pkg</string>
             </dict>
         </dict>
         <dict>
@@ -172,7 +172,7 @@ MUNKI_ICON should be overridden with your icon name.
             <key>Arguments</key>
             <dict>
                 <key>pattern</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_admin*</string>
+                <string>%RECIPE_CACHE_DIR%/unpack/munkitools_admin*.pkg</string>
             </dict>
         </dict>
         <dict>
