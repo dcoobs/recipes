@@ -7,7 +7,7 @@
 This recipe calls a download recipe that downloads a Munki tools pkg as well as the UofI MTM onboarding pkg
 to the recipe cache/downloads folder. Then this recipe breaks it down into the individual component pkgs,
 and then rebuilds them such that we end up with a single distribution pkg that contains Munki tools and MTM onboarding pkg.
-I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG core recipes for this recipe.
+I borrowed a couple lines of code from munkitools5.munki.recipe in the AutoPKG core recipes for this recipe.
 </string>
     <key>Identifier</key>
     <string>com.github.dcoobs.pkg.UofI_MTM_Installer</string>
@@ -43,7 +43,7 @@ I borrowed a couple lines of code from munkitools3.munki.recipe in the AutoPKG c
             <key>Arguments</key>
             <dict>
                 <key>asset_regex</key>
-                <string>^munkitools-4.*?pkg$</string>
+                <string>^munkitools-5.*?pkg$</string>
                 <key>github_repo</key>
                 <string>munki/munki</string>
                 <key>include_prereleases</key>
