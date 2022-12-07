@@ -4,25 +4,25 @@
 <dict>
     <key>Description</key>
     <string>Modified version of code and concepts from munkitools5.munki.recipe in the AutoPKG core recipes.
-It is more or less the MunkiTools5 recipe but I added a step to also download the UofI MTM onboarding pkg.
+It is more or less the MunkiTools6 recipe but I added a step to also download the UofI MTM onboarding pkg.
 
 ---Below is the original recipe notes---
 Note: munkitools does not include a code signature. If your
 organization requires code signature, it is recommend to internally sign
 the application.
 
-Downloads and imports version 5 of the Munki tools via
+Downloads and imports version 6 of the Munki tools via
 the official releases listing on GitHub. You can set INCLUDE_PRERELEASES
 to any value to have this recipe pull prerelease versions.
 
-Note that Munki 5 includes an additional component pkg, munkitools_app_usage.
+Note that Munki 6 includes an additional component pkg, munkitools_app_usage.
 This recipe imports this to the Munki with the appropriate 'requires' key,
 however as it is considered an optional component, this recipe does not
 add it as an update_for any Munki component. Admins should add
 munkitools_app_usage to a manifest manually if its installation on clients
 is desired.
 
-Note that Munki 5 offers the option to include Python to be embedded 
+Note that Munki 6 offers the option to include Python to be embedded 
 in preparation for macOS no longer including the Python environment in future OSes.
 This recipe includes the embedded Python installation and adds the Python package
 as a requirement to the other munki pkginfos.
@@ -109,7 +109,7 @@ MUNKI_ICON should be overridden with your icon name.
             <key>Arguments</key>
             <dict>
                 <key>asset_regex</key>
-                <string>^munkitools-5.*?pkg$</string>
+                <string>^munkitools-6.*?pkg$</string>
                 <key>github_repo</key>
                 <string>munki/munki</string>
                 <key>include_prereleases</key>
