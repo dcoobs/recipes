@@ -12,6 +12,8 @@
         <string>apps/CSFalcon</string>
         <key>NAME</key>
         <string>CSFalcon</string>
+        <key>MINIMUM_OS</key>
+        <string>11.0</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -48,7 +50,7 @@
                 <key>additional_pkginfo</key>
                 <dict>
                     <key>minimum_os_version</key>
-                    <string>10.13.0</string>
+                    <string>%MINIMUM_OS%</string>
                 </dict>
             </dict>
         </dict>
